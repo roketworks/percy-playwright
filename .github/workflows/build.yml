@@ -1,0 +1,24 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-2019]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - uses: microsoft/playwright-github-action@v1
+      
+      - run: yarn
+      - run: yarn build
+        
+      - name: Percy Test
+        uses: percy/exec-action@master
+        with:
+          command: "mocha --opts ./mocha.opts tests/*spec.js"
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
