@@ -19,7 +19,7 @@
     "@semantic-release/git": "^9.0.0",
     "chai": "^4.2.0",
     "http-server": "^0.12.0",
-    "mocha": "^7.0.1",
+    "mocha": "^8.3.2",
     "playwright": "^1.0.2",
     "semantic-release": "^17.0.4",
     "typescript": "^3.1.6"
